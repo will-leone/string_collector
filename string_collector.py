@@ -18,10 +18,10 @@ VERSIONS
       - If searching for a variable in a SAS file, extract all statements
         defining the variable and provide the lines spanned by each statement
 
-[V2] TENTATIVE: will add support for PDF documents.
+[V2] TENTATIVE: will add support for PDF and MS Office documents.
 
 INSTRUCTIONS
-Open Command Prompt (Windows + R, type CMD) and type the following. Press Enter
+Open Anaconda Prompt and type the following. Press Enter
 after each step.
 - activate saspy_env
       # replace saspy_env with a Python virtual environment
