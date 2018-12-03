@@ -51,7 +51,7 @@ def dir_search():
            + "press enter."))
 
     _mypath = input()
-    mypath = _mypath.strip()
+    mypath = _mypath.strip(" \"\'")
     print('Search directory is: ', mypath)
 
     print(('Enter the string you want to search for in ', mypath, '. You can '
@@ -86,7 +86,7 @@ def dir_search():
                     else:
                         pass
                     if '.sas' in file and sas_buffer:  # duck typing
-                        if '=' in new_instance:
+                        if '=' in sas_buffer:
                             occurrences[(file, my_str, linenum)] = sas_buffer
                         else:
                             del occurrences[(file, my_str, linenum)]  # false positive
