@@ -28,7 +28,7 @@ after each step.
 - cd /d X:\Data_Governance\Projects\PDW Data Dictionary\Code
       # Change directory to wherever this code is located
 - python
-- import find_gtl_definitions
+- import string_collector
 - X:\Data_Governance\Projects\PDW Data Dictionary\Code
       # Folder to be searched (when prompted)
 - sas_BUFFER   ~ thisvaluedoesn'texist ~ Non_null
