@@ -75,25 +75,28 @@ def dir_search():
                 sas_buffer = str()
             else:  # not necessary, but helps readability and encourages review of logic flow
                 pass
-            for linenum, line in enumerate(f, start=1):
-                if '.sas' in file:
-                    sas_buffer += line.strip()
-                else:
-                    pass
-                if my_str.lower() in line.lower():
-                    if (file, my_str, linenum) not in occurrences:
-                        occurrences[(file, my_str, linenum)] = line.strip()
+            try:
+                for linenum, line in enumerate(f, start=1):
+                    if '.sas' in file:
+                        sas_buffer += line.strip()
                     else:
                         pass
-                    if '.sas' in file and sas_buffer:  # duck typing
-                        if '=' in sas_buffer:
-                            occurrences[(file, my_str, linenum)] = sas_buffer
+                    if my_str.lower() in line.lower():
+                        if (file, my_str, linenum) not in occurrences:
+                            occurrences[(file, my_str, linenum)] = line.strip()
                         else:
-                            del occurrences[(file, my_str, linenum)]  # false positive
-                else:
-                    continue
-                if '.sas' in file and ';' in sas_buffer:  # second condition only checked if first is true
-                    sas_buffer = str()
+                            pass
+                        if '.sas' in file and sas_buffer:  # duck typing
+                            if '=' in sas_buffer:
+                                occurrences[(file, my_str, linenum)] = sas_buffer
+                            else:
+                                del occurrences[(file, my_str, linenum)]  # false positive
+                    else:
+                        continue
+                    if '.sas' in file and ';' in sas_buffer:  # second condition only checked if first is true
+                        sas_buffer = str()
+            except UnicodeDecodeError:
+                pass
         occurrences_list = list()
         for key, value in occurrences.items():
             occurrences_list.append((key[0], key[1], key[2], value))
