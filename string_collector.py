@@ -78,7 +78,10 @@ def dir_search():
             try:
                 for linenum, line in enumerate(f, start=1):
                     if '.sas' in file:
-                        sas_buffer += line.strip()
+                        if ';' in sas_buffer or len(sas_buffer) > 100:
+                            sas_buffer = line.strip()
+                        else:
+                            sas_buffer += line.strip()
                     else:
                         pass
                     if my_str.lower() in line.lower():
@@ -93,8 +96,6 @@ def dir_search():
                                 del occurrences[(file, my_str, linenum)]  # false positive
                     else:
                         continue
-                    if '.sas' in file and ';' in sas_buffer:  # second condition only checked if first is true
-                        sas_buffer = str()
             except UnicodeDecodeError:
                 pass
         occurrences_list = list()
