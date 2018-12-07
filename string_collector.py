@@ -101,10 +101,7 @@ def dir_search():
         occurrences_list = list()
         for key, value in occurrences.items():
             occurrences_list.append((key[0], key[1], key[2], value))
-        print('\n\nNew occurrences list:')  # QA
-        for item in occurrences_list:
-            print(item)
-        print('\n\n')
+        #print('\n\nNew occurrences list:')  # QA
         return occurrences_list
 
     data_box = list()
@@ -117,14 +114,19 @@ def dir_search():
                 new_scan = str_scan(mypath, foo, target_string)
                 if new_scan:  # duck typing: executes iff new_scan is not empty
                     dir_files.extend(new_scan)
-                print(f"Scanned {foo} for instances of {target_string}.")
+                #print(f"Scanned {foo} for instances of {target_string}.")
             else:
                 continue
+        if dir_files:
+            for item in dir_files:
+                print(dir_files)
+            final_array = np.array(dir_files)
+            df = pd.DataFrame(final_array, columns=['file', 'string'
+                                                    , 'linenum', 'line'])
+            data_box.append((target_string, df))
 
-        final_array = np.array(dir_files)
-        df = pd.DataFrame(final_array, columns=['file', 'string'
-                                                , 'linenum', 'line'])
-        data_box.append((target_string, df))
+    for item in data_box:
+        print(item)
 
     destination = "C:\\Users\\" + os.getlogin() + "\\Downloads"
     os.chdir(destination)
