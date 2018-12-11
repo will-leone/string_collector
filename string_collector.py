@@ -60,9 +60,8 @@ def dir_search():
     list_target_strings = _list_target_strings.split('~')
     for k, object in enumerate(list_target_strings):
         list_target_strings[k] = object.strip()
-    timestamp = start.strftime('%d.%m.%Y')
-    results_filename = (('scan_' + ','.join(list_target_strings).upper()
-        + '_' +  timestamp + '.xlsx'))
+    date = start.strftime('%d.%m.%Y')
+    results_filename = 'string_collector_' + date + '.xlsx'
     try:  # could also use if os.is_file() to check
         os.remove(results_filename)  # removes prior version if file exists
     except FileNotFoundError:
