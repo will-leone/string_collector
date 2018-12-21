@@ -100,7 +100,6 @@ def dir_search():
         occurrences_list = list()
         for key, value in occurrences.items():
             occurrences_list.append((key[0], key[1], key[2], value))
-        #print('\n\nNew occurrences list:')  # QA
         return occurrences_list
 
     data_box = list()
@@ -117,15 +116,10 @@ def dir_search():
             else:
                 continue
         if dir_files:
-            for item in dir_files:
-                print(dir_files)
             final_array = np.array(dir_files)
             df = pd.DataFrame(final_array, columns=['file', 'string'
                                                     , 'linenum', 'line'])
             data_box.append((target_string, df))
-
-    for item in data_box:
-        print(item)
 
     destination = "C:\\Users\\" + os.getlogin() + "\\Downloads"
     os.chdir(destination)
